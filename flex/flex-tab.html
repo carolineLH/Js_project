@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用flex做tab</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    ul,li{
+        list-style: none;
+
+    }
+    .flex-cont{
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+    }
+    .flex-tab{
+        height: 44px;
+        width: 100%;
+        margin: 10px 0;
+        line-height: 44px;
+        background: #fff;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .flex-tab li{
+       width: 0%;        
+       flex: 1;
+       position: relative;
+       display: block;
+       color: #777;
+       font-size: 16px;
+       border: 1px solid #ddd;
+       border-left: none;
+    }
+    .flex-tab li a{
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        text-decoration: none;
+    }
+     .flex-tab li .tab-title{
+         display: block;
+         font-size: 16px;
+         color: #777;
+     }
+     .flex-tab li.current .tab-title{
+         color: #259ade;
+     }
+    </style>
+</head>
+<body>
+    <h1>tab bar</h1>
+    <p>
+        current 类 当前激活
+    </p>
+    <ul class="flex-cont flex-tab">
+        <li class="current">
+            <a href="javascripat:void(0);">
+                <span class="tab-title">title</span>
+            </a>
+        </li>
+          <li class="current">
+            <a href="javascripat:void(0);">
+                <span class="tab-title">title</span>
+            </a>
+        </li>
+          <li class="current">
+            <a href="javascripat:void(0);">
+                <span class="tab-title">title</span>
+            </a>
+        </li>
+          <li class="current">
+            <a href="javascripat:void(0);">
+                <span class="tab-title">title</span>
+            </a>
+        </li>
+    </ul> 
+    <script src="http://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>       
+    <script>
+    $('.flex-tab li a')
+       .click(function(){
+           $('.flex-tab li.current').removeClass('current');
+           $(this).parent().addClass('current');
+       })
+    </script>       
+    <!--// js里所有元素都能响应点击，但是a特别适合
+    // const tabs=
+    // Array.from(
+    //     document.querySelectorAll('.flex-tab li a')
+    // );
+    // tabs.forEach(tab =>{
+    //     tab.addEventListener('click',event =>{
+    //         // 结点的父节点
+    //     let oLi=event.target.parentNode.parentNode;
+    //     console.log(oLi);
+    //     if(!oLi.classList.contains('current')){
+    //         // 高亮着的取消？
+    //         document.querySelector('.current')
+    //         .classList.remove('current');
+    //        oLi.classList.add('current');
+    //     }
+    //     })
+    // })-->
+     
+</body>
+</html>
