@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fir.im开箱子动画</title>
+    <style>
+        /* 引入自定义字体  @font-face
+        字体在哪里？系统的front 文件内
+        给新字体起个名字
+        字体由不同类型的字体文件组成 不同浏览器要不同字体文件 */
+        @font-face{
+            font-family:icomoon;
+            src:url(./fonts/icomoon.eot?wcusdg);
+            src:url(./fonts/icomoon.eot?wcusdg#iefix) format("embedded-opentype"),
+            url(./fonts/icomoon.ttf?wcusdg) format("truetype"),
+            url(./fonts/icomoon.woff?wcusdg) format("woff"),
+            url(./fonts/icomoon.svg?wcusdg#icomoon) format("svg");font-weight:400;font-style:normal}
+    *, :after, :before{
+        margin: 0;
+        padding: 0;
+        /* 新的盒子大小计算方式，出于移动端
+        传统的box-sizing是孤立的，只管内容大小，忽略padding border
+        带来麻烦  盒子在页面上占据的大小是大于等于我们给盒子大小设定的 宽*高
+        盒子在页面中=内容+padding+border+margin 定位构成
+        border-box计算方式后，
+        给盒子大小设定直接是盒子’
+        在页面中的占据大小，border 以内都算盒子大小，自动分配
+        先分配完 border padding 剩下的
+        交给内容，好处是可以轻松决定页面元素的大小。 */
+        box-sizing: border-box; 
+    }
+    .content-box{
+        width: 100px;
+        height: 100px;
+        border: 5px solid #000;
+        background: red;
+        padding: 2px;
+        margin: 10px;
+        font-size: 0;
+    }
+    .box-item{
+        width: 50%;
+        background: yellow;
+        height: 100%;
+        display: inline-block;
+        font-size: 14px;
+        /* inline-block 用起来爽，但是天生有bug 
+        在元素之间的换行会占据一些空间
+        删除换行 后遗症 ，破坏了代码对齐font-size: 0;父容器中，font-size: 14px;自身加 */
+    }
+    .box-item:first-child{
+        background: #fff;
+    }
+    html{
+        font-size: 10px;
+        -webkit-tap-highlight-color: transparent;
+        font-family: sans-serif;
+        -webkit-text-size-adjust: 100%;
+    } 
+    html,body{
+        height: 100%;
+    }
+    body{
+        overflow: hidden;
+        height: 100%;
+        /* 字体的抗锯齿 */
+        -webkit-font-smoothing:antialiased;
+        font-size: 14px;
+        line-height: 1.428571429;
+        font-family:"Helvetica Neue",Arial, sans-serif;
+        background: #414859;
+
+    }
+    .boxes-container{
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        margin: 0 auto;
+        padding: 0 40px;
+        font-size: 0;
+
+    }
+    .cols{
+        position: relative;
+        display: inline-block;
+        width: 25%;
+        text-align: center;
+        flex: 1;
+        /* 3D样式前提是设置了视点，眼睛离元素的距离 */
+        -webkit-perspective: 1200px;
+        perspective: 1200px;
+        /* translateZ(100px)
+        rotateZ rotateX rotateY哪个轴就以这个中心轴为轴转  顺时针：正 逆时针：负
+        scale  */
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+    .box-wrapper{
+        width: 170px;
+        display: inline-block;
+    }
+    .tool-desc{
+        margin: 0 auto 18px;
+        width: 90%;
+        height: 100px;
+        color: #fff;
+        text-align: left;
+        font-size: 18px;      
+    }
+    .brace{
+        overflow: hidden;
+        margin-right: 18px;
+        color: #fff;
+        font-size: 30px;
+    }
+    /* 属性选择器 类名属性*=包含 选择所有类名icon-开头的
+    ^= 以什么开始icon- 所有类名里有icon- 的 */
+    [class*=" icon-"],[class^="icon-"]{
+        /* 自定义字体 图标字体库 导入 */
+        font-family:icomoon!important;
+        speak:none;
+        font-style: normal;
+        font-weight: 400;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing:antialiased
+    }
+    .icon-brace-box:before{
+       /* 在content里面放了字体的编码 */
+       /* 用自定义图标字体库来显示网站图标，取代图片，更小更灵活 */
+       content: '\e61d';
+    }
+    .box, .box .side{
+        width: 120px;
+        display: inline-block;
+        box-sizing: border-box;
+        height: 120px;
+    }
+    .box{
+        z-index: 10;
+        margin-top: 100px;
+        margin-left:-68px;
+        text-align: center;
+        font-size: 0;
+        transition: all .2s;
+    }
+    .side{
+        position: absolute;
+        z-index: 38;
+        border: 1px solid #3f515f;
+        background-color: #0390A1;
+    }
+    .box .left{
+        right: 100%;
+        height: 110px;
+        border: 2px solid #3f515f;
+        transform: rotateY(-90deg);
+        transform-origin: right;
+    }
+
+</style>
+</head>
+<body>
+    <!-- <div class="content-box">
+    <div class="box-item"></div><div class="box-item"></div>
+    </div> -->
+    <div class="boxes-container">
+        <div class="cols">
+            <div class="box-wrapper">
+                <p class="tool-desc">
+                 让测试用户快速获取UDID并发送给开发者
+                </p>
+                <div class="brace">
+                    <i class="icon-brace-box"> </i>
+                </div>
+                <div class="box">
+                <div class="side left"></div>
+                <div class="side top"></div>
+                <div class="side front"></div>
+                <div class="side right"></div>
+                <div class="side back"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pure Css Wave</title>
+    <style>
+  body{
+      position: relative;
+      align-items: center;
+      min-height: 100vh;
+      background-color: rgb(118, 218, 255);
+      overflow: hidden;
+  }
+  body:before, body:after{
+      content: '';
+      position: absolute;
+      left: 50%;
+      min-width: 300vh;
+      min-height: 300vh;
+      background-color: #fff;
+      animation-name: rotate;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+  }
+  body:before{
+      bottom: 15vh;
+      border-radius: 45%;
+      animation-duration: 10s;
+  }
+  body:after{
+      bottom: 12vh;
+      opacity: .5;
+      border-radius: 47%;
+      -webkit-animation: rotate 5s infinite;
+      animation: rotate 5s infinite;
+  }
+  @keyframes rotate{
+    0%{
+        transform: translate(-50%,0) rotateZ(0deg);
+    }
+    50%{
+        transform: translate(-50%,2%) rotateZ(180deg);
+    }
+    100%{
+        transform: translate(-50%,0) rotateZ(360deg);
+    }
+}
+</style>
+</head>
+<body>
+    <h2>
+       Pure Css Wave 
+    </h2>
+</body>
+</html>

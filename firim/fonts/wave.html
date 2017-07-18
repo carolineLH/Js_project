@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css 波浪效果</title>
+    <style>
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    height: 100%;
+    
+}
+body{
+   display: flex;
+   text-align: center;
+   justify-content: center;
+
+}
+.wave{
+    width: 200px;
+    height: 200px;
+    background: red;
+    line-height: 200px;
+    text-align: center;
+    -webkit-border-radius:45%;
+    border-radius:45%;
+    color: white;
+    font-size: 30px;
+    -webkit-animation: rotate 5s infinite;
+    animation: rotate 5s infinite;
+}
+@keyframes rotate{
+    0%{
+        transform: translate(-50%,0) rotateZ(0deg);
+    }
+    50%{
+        transform: translate(-50%,2%) rotateZ(180deg);
+    }
+    100%{
+        transform: translate(-50%,0) rotateZ(360deg);
+    }
+}
+</style>
+</head>
+<body>
+    <div class="wave">
+        css波浪效果
+    </div>
+</body>
+</html>
