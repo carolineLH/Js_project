@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>closure闭包</title>
+</head>
+<body>
+<script>
+// var func=function(){
+//     // 闭合的空间scope , 
+//     // 变量的查找 冒泡查找  一路冒泡 直到window
+
+//     // 函数作用域
+//     // 不用var 申明的变量，将是全局变量
+//     // 不推荐 会破坏生态
+//     var a=1;
+//     // alert(a);
+// }
+// func();
+// alert(a);//a is not defined
+// alert(name);//window有name 属性
+// var a=1;//全局
+// var func1=function(){
+//    var b=1;//局部变量
+// //    函数内嵌套函数（前提）
+// // js 任何类型都可以被赋值
+// //闭包： 函数定义时的上下文环境
+// // 变量查找一直保持对b的引用
+//    var func2=function(){
+//     //    闭包在函数执行时，可以调用到他定义时的变量
+//     var c=3;
+//     alert(b);//1
+//     alert(a);//1
+//    }
+//    func2();
+//    alert(c);//error not defined
+// }
+// func1();//后b 被销毁 垃圾回收
+var func=function(){
+    var a=1;//局部变量
+    // 返回函数 函数执行
+    // 重见天日
+    // 函数内部函数 函数定义
+    // 外面访问,
+    return function(){
+        a++;
+        alert(a);
+    }
+}
+var f=func();
+f();
+</script>
+</body>
+</html>
